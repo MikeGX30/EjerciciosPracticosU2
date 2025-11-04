@@ -1,13 +1,13 @@
 # EjerciciosPracticosU2
 # UNIDAD 2
 
-|  Nº | Actividad                                         | Ver                                                 |
+|  Nº | Actividad  Listas                                       | Ver                                                 |
 | :-: | :------------------------------------------------ | :-------------------------------------------------- |
-|  1  | Ejercicio 1 —  | [📄 Abrir Ejercicio](./Ejercicio1)      |
-|  2  | Ejercicio 2 —                | [📄 Abrir Ejercicio](./Ejercicio2)               |
-|  3  | Ejercicio 3 —      |[📄 Abrir Ejercicio](./Ejercicio3)|
-|  4  | Ejercicio 4 —    |[📄 Abrir Ejercicio](./Ejercicio4)|
-|  5  | Ejercicio 5 —   |[📄 Abrir Ejercicio](./Ejercicio5)|
+|  1  | Ejercicio 1 Listas —  | [📄 Abrir Ejercicio](./Ejercicio1)      |
+|  2  | Ejercicio 2 Listas —                | [📄 Abrir Ejercicio](./Ejercicio2)               |
+|  3  | Ejercicio 3 Listas —      |[📄 Abrir Ejercicio](./Ejercicio3)|
+|  4  | Ejercicio 4 Listas —    |[📄 Abrir Ejercicio](./Ejercicio4)|
+|  5  | Ejercicio 5 Listas —   |[📄 Abrir Ejercicio](./Ejercicio5)|
 
 ---
 
