@@ -3,11 +3,11 @@
 
 |  Nº | Actividad                                         | Ver                                                 |
 | :-: | :------------------------------------------------ | :-------------------------------------------------- |
-|  1  | Ejercicio 1 —  | [📄 Abrir PDF](./Ejercicio1)      |
-|  2  | Ejercicio 2 —                | [📄 Abrir PDF](./Ejercicio2.java)               |
-|  3  | Ejercicio 3 —      |[📄 Abrir PDF](./Ejercicio3.java)|
-|  4  | Ejercicio 4 —    |[📄 Abrir PDF](./Ejercicio4.java)|
-|  5  | Ejercicio 5 —   |[📄 Abrir PDF](./Ejercicio5.java)|
+|  1  | Ejercicio 1 —  | [📄 Abrir Ejercicio](./Ejercicio1)      |
+|  2  | Ejercicio 2 —                | [📄 Abrir Ejercicio](./Ejercicio2)               |
+|  3  | Ejercicio 3 —      |[📄 Abrir Ejercicio](./Ejercicio3)|
+|  4  | Ejercicio 4 —    |[📄 Abrir Ejercicio](./Ejercicio4)|
+|  5  | Ejercicio 5 —   |[📄 Abrir Ejercicio](./Ejercicio5)|
 
 ---
 
