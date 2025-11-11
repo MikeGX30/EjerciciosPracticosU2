@@ -18,6 +18,11 @@
 |  3  | Ejercicio Supermercado cajas  —      |[📄 Abrir Ejercicio](./SupermercadoColas.java)|
 |  4  | Clase Caja —    |[📄 Abrir Clase](./Caja.java)|
 |  5  | Clase Cliente —   |[📄 Abrir Clase](./Cliente.java)|
+|  Nº | Videos Colas                                       | Ver                                                 |
+|  1  | Ejercicio Atencion al Cliente —  | [📄 Abrir video](./AtencionCliente-colas.mp4)      |
+|  2  | Ejercicio Comparacion —                | [📄 Abrir video](./Comparacion-colas.mp4)               |
+|  3  | Ejercicio Supermercado cajas  —      |[📄 Abrir video](./Supermercado-colas.mp4)|
+
 
 ---
 
@@ -28,5 +33,11 @@
 |  3  | Ejercicio 3. Verificar si una pila está vacía  —      |[📄 Abrir Ejercicio](./Ejercicio3MLA.java)|
 |  4  | Ejercicio 4. Invertir una palabra —    |[📄 Abrir Ejercicio](./Ejercicio4MLA.java)|
 |  5  | Ejercicio 9. Revertir lista  —   |[📄 Abrir Ejercicio](./Ejercicio9MLA.java)|
+|  Nº | Videos Pilas                                       | Ver                                                 |
+|  1  | Ejercicio 1. Simulación simple de pila —  | [📄 Abrir video](./Ejercicio-1-pilas.mp4)      |
+|  2  | Ejercicio 2. Pila de nombres —                | [📄 Abrir video](./Ejercicio-2-pilas.mp4)               |
+|  3  | Ejercicio 3. Verificar si una pila está vacía  —      |[📄 Abrir video](./Ejercicio-3-pilas.mp4)|
+|  4  | Ejercicio 4. Invertir una palabra —    |[📄 Abrir video](./Ejercicio-4-pilas.mp4)|
+|  5  | Ejercicio 9. Revertir lista  —   |[📄 Abrir video](./Ejercicio-9-pilas.mp4)|
 
 ---
