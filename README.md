@@ -19,7 +19,7 @@
 |  4  | Clase Caja —    |[📄 Abrir Clase](./Caja.java)|
 |  5  | Clase Cliente —   |[📄 Abrir Clase](./Cliente.java)|
 |  Nº | Videos Colas                                       | Ver                                                 |
-|  1  | Ejercicio Atencion al Cliente —  | [📄 Abrir video](./AtencionCliente-colas.mp4)      |
+|  1  | Ejercicio Atencion al Cliente —  | [📄 Abrir video](./AtencionCliente-colas)      |
 |  2  | Ejercicio Comparacion —                | [📄 Abrir video](./Comparacion-colas.mp4)               |
 |  3  | Ejercicio Supermercado cajas  —      |[📄 Abrir video](./Supermercado-colas.mp4)|
 
