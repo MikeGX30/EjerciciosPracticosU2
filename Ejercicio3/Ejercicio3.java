@@ -3,32 +3,35 @@ package Ejercicio3;
 import java.util.Scanner;
 
 /**
- * @author GTID141 
- * @author 1224100689.mla@gmail.com
- * @author miguel Lozano
- */
-////////////////////////////////////////////////////////////////////////
-/**
  * Clase Termino:
- * Aqui basicamente guardamos un coeficiente, un exponente y la referencia
- * al siguiente termino, esto representa cada pedazo del polinomio.
+ * Aqui guardo el coeficiente, el exponente y la referencia al siguiente, basicamente cada objeto de esta clase es una parte del polinomio.
  */
 class Termino {
-    double coef; // coeficiente del termino numero que multiplica a x
-    int exp;     // exponente del termino
-    Termino sig; // referencia al siguiente termino
+    private double coef; 
+    private int exp;     
+    private Termino sig; 
 
     Termino(double c, int e) {
-        coef = c;
-        exp = e;
-        sig = null;
+        this.coef = c;
+        this.exp = e;
+        this.sig = null;
+    }
+
+    // getters
+    public double getCoef() { return coef; }
+    public int getExp() { return exp; }
+    public Termino getSig() { return sig; }
+
+    // setter para la liga
+    public void setSig(Termino sig) {
+        this.sig = sig;
     }
 }
 
 /**
  * Clase Polinomio:
- * Aqui manejamos toda la lista de terminos, que al final forman el polinomio, se pueden agregar terminos, mostrarlos,
- * evaluarlo en un valor y hasta generar una tabla de valores, todo va ordenado como lista enlazada sencilla.
+ * Aqui se maneja la lista de terminos, esta clase controla todo:
+ * agregar terminos, mostrarlos, evaluarlos, etc.
  */
 class Polinomio {
     private Termino inicio;
@@ -38,23 +41,26 @@ class Polinomio {
     }
 
     /**
-     * Metodo agregar:
-     * Mete un nuevo termino al final del polinomio. No hay orden automatico, simplemente lo encadena al ultimo.
+     * Agregar un termino:
+     * Mete el nuevo termino al final, no los ordeno, solo los encadeno.
      */
     void agregar(double c, int e) {
         Termino nuevo = new Termino(c, e);
+
         if (inicio == null) {
             inicio = nuevo;
         } else {
             Termino actual = inicio;
-            while (actual.sig != null) actual = actual.sig;
-            actual.sig = nuevo;
+            while (actual.getSig() != null) {
+                actual = actual.getSig();
+            }
+            actual.setSig(nuevo);
         }
     }
 
     /**
-     * Metodo mostrar:
-     * Imprime el polinomio con formato bonito, si esta vacio, pues avisamos.
+     * Mostrar el polinomio:
+     * Solo se recorre y se imprime de forma decente.
      */
     void mostrar() {
         if (inicio == null) {
@@ -64,71 +70,84 @@ class Polinomio {
 
         Termino actual = inicio;
         boolean primero = true;
+
         System.out.print("P(x) = ");
+
         while (actual != null) {
-            if (actual.coef >= 0 && !primero) System.out.print(" + ");
-            else if (actual.coef < 0) System.out.print(" - ");
 
-            double valor = Math.abs(actual.coef);
+            double coef = actual.getCoef();
+            int exp = actual.getExp();
 
-            if (actual.exp == 0) System.out.print(valor);
-            else if (actual.exp == 1) System.out.print((valor == 1 ? "" : valor) + "x");
-            else System.out.print((valor == 1 ? "" : valor) + "x^" + actual.exp);
+            if (coef >= 0 && !primero) System.out.print(" + ");
+            else if (coef < 0) System.out.print(" - ");
 
-            actual = actual.sig;
+            double valor = Math.abs(coef);
+
+            if (exp == 0) System.out.print(valor);
+            else if (exp == 1) System.out.print((valor == 1 ? "" : valor) + "x");
+            else System.out.print((valor == 1 ? "" : valor) + "x^" + exp);
+
+            actual = actual.getSig();
             primero = false;
         }
+
         System.out.println();
     }
 
     /**
-     * Metodo evaluar:
-     * Calcula el valor del polinomio sustituyendo x por el numero que metemos, recorre cada termino y hace coef * x^exponente y todo eso se suma.
+     * Evaluar:
+     * Se sustituye x en el polinomio y se va sumando cada termino.
      */
     double evaluar(double x) {
         double resultado = 0;
+
         Termino actual = inicio;
+
         while (actual != null) {
-            resultado += actual.coef * Math.pow(x, actual.exp);
-            actual = actual.sig;
+            resultado += actual.getCoef() * Math.pow(x, actual.getExp());
+            actual = actual.getSig();
         }
+
         return resultado;
     }
 
     /**
-     * Metodo tabla:
-     * Genera una tabla para ver como cambia el polinomio desde x=0 hasta x=5
-     * avanzando de 0.5 en 0.5. Basicamente es una mini tabla de valores.
+     * Tabla de valores:
+     * Solo se imprime como va el polinomio desde x=0 hasta x=5.
      */
     void tabla() {
         System.out.println("\n=== TABLA DE EVALUACION ===");
         System.out.println("  x   |   P(x)");
         System.out.println("---------------");
+
         for (double x = 0; x <= 5; x += 0.5) {
             System.out.printf("%4.1f  | %8.3f%n", x, evaluar(x));
         }
     }
 
     /**
-     * Metodo existeExp:
-     * Revisa si ya hay un termino con un exponente especifico, esto sirve para evitar duplicados.
+     * ExisteExp:
+     * se revisa si ya hay un termino con ese exponente para no repetir.
      */
     boolean existeExp(int e) {
         Termino actual = inicio;
+
         while (actual != null) {
-            if (actual.exp == e) return true;
-            actual = actual.sig;
+            if (actual.getExp() == e) return true;
+            actual = actual.getSig();
         }
+
         return false;
     }
 }
 
 /**
  * Clase principal:
- * Aqui es donde pedimos datos al usuario, construimos el polinomio y luego mostramos todo, tambien se puede evaluar en otro valor si se quiere.
+ * Aqui ya nadamas pido los datos, construyo el polinomio y lo muestro.
  */
 public class Actividad03 {
     public static void main(String[] args) {
+
         Scanner entrada = new Scanner(System.in);
         Polinomio p = new Polinomio();
 
@@ -161,10 +180,12 @@ public class Actividad03 {
 
                     p.agregar(c, e);
                     System.out.println("Anadido: " + c + "x^" + e);
+
                 } else {
                     System.out.println("Exponente invalido.");
                     entrada.next();
                 }
+
             } else {
                 System.out.println("Formato incorrecto.");
                 entrada.next();
