@@ -2,134 +2,203 @@ package Ejercicio4;
 
 import java.util.Scanner;
 
-class Nodo {
-    double coef;
-    int exp;
-    Nodo sig;
+/**
+ * @author GTID141
+ * @author 1224100689.mla@gmail.com
+ * @author miguel lozano
+ */
 
-    Nodo(double c, int e) {
+////////////////////////////////////////////////////////////////////////
+/**
+ * Clase Nodo:
+ * Representa un termino del polinomio.
+ * Como no podemos acceder directo, usamos getters y setters.
+ */
+class Nodo {
+    private double coef;
+    private int exp;
+    private Nodo sig;
+
+    public Nodo(double c, int e) {
         coef = c;
         exp = e;
         sig = null;
     }
+
+    // Getters y setters porque los atributos son privados
+    public double getCoef() {
+        return coef;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public Nodo getSig() {
+        return sig;
+    }
+
+    public void setSig(Nodo siguiente) {
+        this.sig = siguiente;
+    }
 }
 
+////////////////////////////////////////////////////////////////////////
+/**
+ * Clase Polinomio:
+ * Controla toda la lista circular.
+ */
 class Polinomio {
-    Nodo ultimo;
 
-    Polinomio() {
+    private Nodo ultimo;
+
+    public Polinomio() {
         ultimo = null;
     }
 
-    void agregar(double c, int e) {
+    /**
+     * Agregar un nuevo termino al final del polinomio circular.
+     */
+    public void agregar(double c, int e) {
         Nodo nuevo = new Nodo(c, e);
+
         if (ultimo == null) {
             ultimo = nuevo;
-            nuevo.sig = nuevo;
+            nuevo.setSig(nuevo);
         } else {
-            nuevo.sig = ultimo.sig;
-            ultimo.sig = nuevo;
+            nuevo.setSig(ultimo.getSig());
+            ultimo.setSig(nuevo);
             ultimo = nuevo;
         }
     }
 
-    void mostrar() {
+    /**
+     * Mostrar todo el polinomio con formato.
+     */
+    public void mostrar() {
         if (ultimo == null) {
-            System.out.println("Polinomio vacío");
+            System.out.println("Polinomio vacio");
             return;
         }
 
-        Nodo actual = ultimo.sig;
+        Nodo actual = ultimo.getSig();
         Nodo inicio = actual;
         boolean primero = true;
 
         System.out.print("P(x) = ");
         do {
-            if (actual.coef >= 0 && !primero) System.out.print(" + ");
-            else if (actual.coef < 0) System.out.print(" - ");
+            double coef = actual.getCoef();
+            int exp = actual.getExp();
 
-            double valor = Math.abs(actual.coef);
-            if (actual.exp == 0) System.out.print(valor);
-            else if (actual.exp == 1) System.out.print((valor == 1 ? "" : valor) + "x");
-            else System.out.print((valor == 1 ? "" : valor) + "x^" + actual.exp);
+            if (coef >= 0 && !primero) System.out.print(" + ");
+            else if (coef < 0) System.out.print(" - ");
 
-            actual = actual.sig;
+            double valor = Math.abs(coef);
+
+            if (exp == 0) System.out.print(valor);
+            else if (exp == 1) System.out.print((valor == 1 ? "" : valor) + "x");
+            else System.out.print((valor == 1 ? "" : valor) + "x^" + exp);
+
+            actual = actual.getSig();
             primero = false;
+
         } while (actual != inicio);
+
         System.out.println();
     }
 
-    double evaluar(double x) {
+    /**
+     * Evaluar P(x) usando la formula coef * x^exp.
+     */
+    public double evaluar(double x) {
         if (ultimo == null) return 0;
 
-        double resultado = 0;
-        Nodo actual = ultimo.sig;
+        double res = 0;
+        Nodo actual = ultimo.getSig();
         Nodo inicio = actual;
 
         do {
-            resultado += actual.coef * Math.pow(x, actual.exp);
-            actual = actual.sig;
+            res += actual.getCoef() * Math.pow(x, actual.getExp());
+            actual = actual.getSig();
         } while (actual != inicio);
 
-        return resultado;
+        return res;
     }
 
-    void tabla() {
-        System.out.println("\n=== TABLA DE EVALUACIÓN ===");
+    /**
+     * Mostrar una tabla de valores desde x = 0 hasta 5.
+     */
+    public void tabla() {
+        System.out.println("\n=== TABLA DE EVALUACION ===");
         System.out.println("  x   |   P(x)");
         System.out.println("---------------");
+
         for (double x = 0; x <= 5; x += 0.5) {
             System.out.printf("%4.1f  | %8.3f%n", x, evaluar(x));
         }
     }
 
-    boolean existe(int e) {
+    /**
+     * Ver si ya existe un termino con el mismo exponente.
+     */
+    public boolean existe(int e) {
         if (ultimo == null) return false;
 
-        Nodo actual = ultimo.sig;
+        Nodo actual = ultimo.getSig();
         Nodo inicio = actual;
 
         do {
-            if (actual.exp == e) return true;
-            actual = actual.sig;
+            if (actual.getExp() == e) return true;
+            actual = actual.getSig();
         } while (actual != inicio);
 
         return false;
     }
 
-    void recorrido() {
+    /**
+     * Mostrar el recorrido circular viendo a quien apunta cada nodo.
+     */
+    public void recorrido() {
         if (ultimo == null) {
-            System.out.println("Lista vacía");
+            System.out.println("Lista vacia");
             return;
         }
 
         System.out.println("\n=== RECORRIDO CIRCULAR ===");
-        Nodo actual = ultimo.sig;
+
+        Nodo actual = ultimo.getSig();
         Nodo inicio = actual;
         int i = 1;
 
         do {
-            System.out.println("Nodo " + i + ": " + actual.coef + "x^" + actual.exp);
-            System.out.println("  Apunta a: " + actual.sig.coef + "x^" + actual.sig.exp);
-            actual = actual.sig;
+            System.out.println("Nodo " + i + ": " + actual.getCoef() + "x^" + actual.getExp());
+            System.out.println("  Apunta a: " + actual.getSig().getCoef() + "x^" + actual.getSig().getExp());
+            actual = actual.getSig();
             i++;
         } while (actual != inicio);
 
-        System.out.println("Ultimo nodo apunta al primero: " + ultimo.coef + "x^" + ultimo.exp +
-                           " -> " + ultimo.sig.coef + "x^" + ultimo.sig.exp);
+        System.out.println("Ultimo nodo apunta al primero: " +
+                ultimo.getCoef() + "x^" + ultimo.getExp() +
+                " -> " + ultimo.getSig().getCoef() + "x^" + ultimo.getSig().getExp());
     }
 }
 
+////////////////////////////////////////////////////////////////////////
+/**
+ * Clase principal:
+ * Aqui solo se capturan terminos, se valida que no se repitan exponentes y se muestran todas las funciones del polinomio.
+ */
 public class Actividad04 {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         Polinomio p = new Polinomio();
 
         System.out.println("=== POLINOMIO CIRCULAR ===");
-        System.out.println("Ingresa coeficiente y exponente (ej. 3 4), escribe 'fin' para terminar:");
+        System.out.println("Ingresa coeficiente y exponente, o escribe fin para parar.");
 
         while (true) {
-            System.out.print("Término: ");
+            System.out.print("Termino: ");
+
             if (entrada.hasNext("fin")) {
                 entrada.next();
                 break;
@@ -137,22 +206,28 @@ public class Actividad04 {
 
             if (entrada.hasNextDouble()) {
                 double c = entrada.nextDouble();
+
                 if (entrada.hasNextInt()) {
                     int e = entrada.nextInt();
+
                     if (e < 0) {
-                        System.out.println("Exponente no válido.");
+                        System.out.println("Exponente no valido.");
                         continue;
                     }
+
                     if (p.existe(e)) {
-                        System.out.println("Ya existe un término con exponente " + e);
+                        System.out.println("Ya existe un termino con exponente " + e);
                         continue;
                     }
+
                     p.agregar(c, e);
-                    System.out.println("Añadido: " + c + "x^" + e);
+                    System.out.println("Anadido: " + c + "x^" + e);
+
                 } else {
-                    System.out.println("Exponente inválido.");
+                    System.out.println("Exponente invalido.");
                     entrada.next();
                 }
+
             } else {
                 System.out.println("Formato incorrecto.");
                 entrada.next();
@@ -165,9 +240,10 @@ public class Actividad04 {
         p.recorrido();
         p.tabla();
 
-        System.out.println("\n¿Evaluar en otro valor? (s/n)");
+        System.out.println("\nEvaluar en otro valor? (s/n)");
         entrada.nextLine();
         String r = entrada.nextLine();
+
         if (r.equalsIgnoreCase("s")) {
             System.out.print("Valor de x: ");
             double x = entrada.nextDouble();
